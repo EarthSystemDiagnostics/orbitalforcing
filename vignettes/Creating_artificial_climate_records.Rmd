@@ -1,0 +1,81 @@
+---
+title: "Creating artificial climate records with power law stochastic variability and seasonality from orbital forcing"
+author: "Thomas Laepple"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Simulate past climate based on the insolation, as described in Laepple, Thomas, and Gerrit Lohmann. 2009. “Seasonal Cycle as Template for Climate Variability on Astronomical Timescales.” Paleoceanography 24 (4): PA4201. doi:10.1029/2008PA001674.
+
+
+```{r}
+library(PaleoSpec)
+library(ecustools)
+#library(orbitalforcing) # functions from orbitalforcing are re-exported by ecustools
+```
+
+Set latitude and longitude of the simulated record
+
+```{r}
+lat1 <- 40  #latitude of the simulated core
+lon1 <- 200  #longitude of the simulated core
+```
+
+Simulate stochastic climate variability
+```{r}
+climate.stochastic <- SimPowerlaw(1, 10000)
+```
+
+Simulate the seasonality from orbital forcing
+
+```{r, fig.width=6, fig.height=5}
+#First extract the modern daily temperature from NCEP reanalysis
+climate.modern <- SelSpace3D(sat.ncep.clim, lat1 = lat1, lon1 = lon1) - 273.15  
+
+#estimate the modern relationship between insolation and T
+transfer <- EstimateTransferfunctionInsolation(climate = climate.modern,
+                                               latitude = lat1, bPlot = TRUE,
+                                               b3plot = TRUE)  
+```
+
+```{r}
+#Sample the climate in 25yr bins
+timevector <- seq(from = 1000, to = 9000, by = 25)  
+climate.stochastic.25 <- SubsampleTimeseriesBlock(climate.stochastic, timevector)
+
+#Change to a timex12 matrix
+climate.stochastic.25.monthly <- rep(climate.stochastic.25, 12)  
+dim(climate.stochastic.25.monthly) <- c(length(timevector), 12)
+```
+
+```{r}
+# and add the simulated orbital variability; as this is slow, it can be added to
+# the 25yr binned data without any loss
+for (i in 1:length(timevector)) {
+  climate.stochastic.25.monthly[i, ] <- climate.stochastic.25.monthly[i, ] + 
+    MonthlyFromDaily(
+      SimulateYearFromInsolation(kyear = timevector[i]/1000,
+                                 transfer = transfer, latitude = lat1,
+                                 bPolynomial = TRUE)
+      )
+  }
+```
+
+
+```{r fig.width=6, fig.height=7}
+plot(timevector, climate.stochastic.25.monthly[, 1], type = "n",
+     ylim = range(climate.stochastic.25.monthly), 
+     xlab = "yr BP", ylab = "Temperature (degC)")
+
+for (i in (1:4) * 3) lines(timevector, climate.stochastic.25.monthly[, i], col = i)
+
+lines(timevector, rowMeans(climate.stochastic.25.monthly), lwd = 3, col = "red")
+legend("topleft", col = c(1:4) * 3, lwd = 2, paste("month of the year",
+                                                   (1:4) * 3), bty = "n")
+legend("topright", col = "red", lwd = 3, "annual mean", bty = "n")
+```
+
