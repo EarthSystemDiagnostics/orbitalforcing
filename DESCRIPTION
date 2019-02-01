@@ -1,8 +1,9 @@
 Package: orbitalforcing
 Title: Orbital forcing from insolation.
 Version: 0.1
-Authors@R: c(person("Thomas", "Laepple", email = "tlaepple@awi.de", role = c("aut")), 
-    person("Andrew", "Dolman", email = "andrew.dolman@awi.de", role = c("aut", "cre")))
+Authors@R: c(person("Thomas", "Laepple", email = "tlaepple@awi.de", role = c("aut")),
+              person("Peter", "Huybers", role = "aut"), 
+              person("Andrew", "Dolman", email = "andrew.dolman@awi.de", role = c("ctb", "cre")))
 Description: Functions to calculate orbital forcing of the climate.
 Depends: R (>= 3.5.1)
 License: MIT + file LICENSE
