@@ -73,8 +73,16 @@ GetSeasCyclePars <- function(lon, lat, age.range.kyear = c(0, 25)){
   glob.tf.sat.ncep.clim <- glob.tf.sat.ncep.clim
 
   WhichTF <- function(lon, lat){
-    ind <- which(attr(glob.tf.sat.ncep.clim, "split_labels")$lat == lat &
-                   attr(glob.tf.sat.ncep.clim, "split_labels")$lon == lon)
+
+    coords <- attr(glob.tf.sat.ncep.clim, "split_labels")
+
+    lats <- unique(coords$lat)
+    lons <- unique(coords$lon)
+
+    nearest.lat <- lats[which.min(abs(lats - lat))]
+    nearest.lon <- lons[which.min(abs(lons - lon))]
+
+    ind <- which(coords$lon == nearest.lon & coords$lat == nearest.lat)
 
     glob.tf.sat.ncep.clim[[ind]][[1]]
 
@@ -99,25 +107,10 @@ GetSeasCyclePars <- function(lon, lat, age.range.kyear = c(0, 25)){
 
   pars$amp.diff <- pars$max.amp - pars$min.amp
 
-  pars$sig.sq_c <- VarSine(pars$mean.amp)
+  pars$sig.sq_c <- spectraluncertainty::VarSine(pars$mean.amp)
   pars$sig.sq_a <- ((pars$max.amp - pars$mean.amp) / pars$mean.amp)^2
 
   return(pars)
 }
 
 
-#' Helper function for GetSeasCyclePars
-#'
-#' @param lon
-#' @param lat
-#'
-#' @return
-#'
-#' @examples
-#' WhichTF(lon = 20, lat = 2.5)
-WhichTF <- function(lon, lat){
-  ind <- which(attr(glob.tf.sat.ncep.clim, "split_labels")$lat == lat &
-                 attr(glob.tf.sat.ncep.clim, "split_labels")$lon == lon)
-
-  glob.tf.sat.ncep.clim[[ind]][[1]]
-}
