@@ -11,7 +11,7 @@ GetSeasCyclePars(lon, lat, age.range.kyear = c(0, 25))
 
 \item{lat}{latitude}
 
-\item{age.range.kyear}{age in ka of the start and end of the precessionary cycle}
+\item{age.range.kyear}{age in ka of the start and end of the precessionary cycle.}
 }
 \value{
 list of seasonal cycle parameters

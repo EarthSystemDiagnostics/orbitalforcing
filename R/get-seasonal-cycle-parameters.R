@@ -52,7 +52,7 @@ GetAmpSeasCycle <- function(lon, lat, kyear, transfer = NULL, plot = FALSE){
 
 #' Get seasonal temperature cycle parameters using GetAmpSeasCycle
 #'
-#' @param age.range.kyear age in ka of the start and end of the precessionary cycle
+#' @param age.range.kyear age in ka of the start and end of the precessionary cycle.
 #' @inheritParams GetAmpSeasCycle
 #' @return list of seasonal cycle parameters
 #' @export
