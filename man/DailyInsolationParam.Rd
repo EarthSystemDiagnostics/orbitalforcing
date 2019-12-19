@@ -5,8 +5,16 @@
 \title{Computes daily average insolation as a function of day and latitude
  given the orbital parameters}
 \usage{
-DailyInsolationParam(lat, day, ecc, obliquity, long_perh, day_type = 1,
-  alpha = 0, T.alpha = 80)
+DailyInsolationParam(
+  lat,
+  day,
+  ecc,
+  obliquity,
+  long_perh,
+  day_type = 1,
+  alpha = 0,
+  T.alpha = 80
+)
 }
 \arguments{
 \item{lat}{Latitude in degrees (-90 to 90).}

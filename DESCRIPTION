@@ -6,7 +6,10 @@ Authors@R: c(person("Thomas", "Laepple", email = "tlaepple@awi.de", role = c("au
               person("Andrew", "Dolman", email = "andrew.dolman@awi.de", role = c("ctb", "cre")))
 Description: Functions to calculate orbital forcing of the climate.
 Depends: R (>= 3.5.0)
+Imports: PaleoSpec
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
+Remotes: 
+    earthsystemdiagnostics/paleospec

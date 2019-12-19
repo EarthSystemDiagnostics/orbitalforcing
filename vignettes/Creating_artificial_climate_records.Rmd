@@ -5,8 +5,10 @@ date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 Simulate past climate based on the insolation, as described in Laepple, Thomas, and Gerrit Lohmann. 2009. “Seasonal Cycle as Template for Climate Variability on Astronomical Timescales.” Paleoceanography 24 (4): PA4201. doi:10.1029/2008PA001674.
@@ -15,7 +17,7 @@ Simulate past climate based on the insolation, as described in Laepple, Thomas, 
 ```{r}
 library(PaleoSpec)
 library(ecustools)
-#library(orbitalforcing) # functions from orbitalforcing are re-exported by ecustools
+library(orbitalforcing) # functions from orbitalforcing are re-exported by ecustools
 ```
 
 Set latitude and longitude of the simulated record
@@ -34,7 +36,7 @@ Simulate the seasonality from orbital forcing
 
 ```{r, fig.width=6, fig.height=5}
 #First extract the modern daily temperature from NCEP reanalysis
-climate.modern <- SelSpace3D(sat.ncep.clim, lat1 = lat1, lon1 = lon1) - 273.15  
+climate.modern <- orbitalforcing:::SelSpace3D(sat.ncep.clim, lat1 = lat1, lon1 = lon1) - 273.15  
 
 #estimate the modern relationship between insolation and T
 transfer <- EstimateTransferfunctionInsolation(climate = climate.modern,

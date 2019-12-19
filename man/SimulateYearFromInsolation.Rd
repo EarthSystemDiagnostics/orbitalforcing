@@ -4,8 +4,13 @@
 \alias{SimulateYearFromInsolation}
 \title{Simulate a year from a parametric relationship to insolation}
 \usage{
-SimulateYearFromInsolation(kyear = 0, transfer, latitude,
-  bPolynomial = FALSE, anomalyRef = NULL)
+SimulateYearFromInsolation(
+  kyear = 0,
+  transfer,
+  latitude,
+  bPolynomial = FALSE,
+  anomalyRef = NULL
+)
 }
 \arguments{
 \item{kyear}{point in time (kyr BP)}
@@ -25,7 +30,8 @@ SimulateYearFromInsolation(kyear = 0, transfer, latitude,
 Simulate a year from a parametric relationship to insolation
 }
 \examples{
-clim <- ecustools::SelSpace3D(sat.ncep.clim, lat1 = 40, lon1 = 200)
+library(orbitalforcing)
+clim <- orbitalforcing:::SelSpace3D(sat.ncep.clim, lat1 = 40, lon1 = 200)
 transfer <- EstimateTransferfunctionInsolation(clim, 40, bPlot = FALSE, b3plot = FALSE)
 plot(1:365, SimulateYearFromInsolation(0, transfer, 40), type = "l",
      main = "predicted at 0 and 10kyr BP", xlab = "day of the year")

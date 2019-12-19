@@ -7,7 +7,8 @@
 #' @return 365 predicted values for each day of the year
 #' @author Thomas Laepple
 #' @examples
-#' clim <- ecustools::SelSpace3D(sat.ncep.clim, lat1 = 40, lon1 = 200)
+#' library(orbitalforcing)
+#' clim <- orbitalforcing:::SelSpace3D(sat.ncep.clim, lat1 = 40, lon1 = 200)
 #' transfer <- EstimateTransferfunctionInsolation(clim, 40, bPlot = FALSE, b3plot = FALSE)
 #' plot(1:365, SimulateYearFromInsolation(0, transfer, 40), type = "l",
 #'      main = "predicted at 0 and 10kyr BP", xlab = "day of the year")

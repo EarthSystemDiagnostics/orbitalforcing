@@ -5,8 +5,15 @@
 \title{Estimate linear or polynomial transfer function between insolation and
   a climate parameter}
 \usage{
-EstimateTransferfunctionInsolation(climate, latitude, polynom.order = 3,
-  clab = "", bPlot = FALSE, b3plot = FALSE, main = "")
+EstimateTransferfunctionInsolation(
+  climate,
+  latitude,
+  polynom.order = 3,
+  clab = "",
+  bPlot = FALSE,
+  b3plot = FALSE,
+  main = ""
+)
 }
 \arguments{
 \item{latitude}{Latitude (deg North)}
@@ -33,7 +40,8 @@ Estimate linear or polynomial transfer function between insolation and
   a climate parameter
 }
 \examples{
-clim <- SelSpace3D(sat.ncep.clim, lat1 = 40, lon1 = 200)
+library(orbitalforcing)
+clim <- orbitalforcing:::SelSpace3D(sat.ncep.clim, lat1 = 40, lon1 = 200)
 
 result <- EstimateTransferfunctionInsolation(clim, 70, bPlot=TRUE, b3plot=TRUE)
 }

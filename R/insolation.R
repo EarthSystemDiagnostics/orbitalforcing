@@ -370,12 +370,12 @@ DailyInsolation<-function(kyear,lat,day,day_type=1,fast=TRUE,T.alpha=80,alpha=0)
 #' @return list(ecc=ecc,epsilon=epsilon,omega=omega)
 #' @author Thomas Laepple
 orbital_parameters_fast<-function(kyear){
-  if ( length(ecustools::orbital_global$ecc) != 50001) stop("orbital parameters not initalized")
+  if ( length(orbital_global$ecc) != 50001) stop("orbital parameters not initalized")
 
   return(
-    list(ecc=ecustools::orbital_global$ecc[kyear*10+1],
-              epsilon=ecustools::orbital_global$epsilon[kyear*10+1],
-              omega=ecustools::orbital_global$omega[kyear*10+1])
+    list(ecc=orbital_global$ecc[kyear*10+1],
+              epsilon=orbital_global$epsilon[kyear*10+1],
+              omega=orbital_global$omega[kyear*10+1])
          )
 
 }
@@ -458,8 +458,8 @@ unwrap <- function(p) {
 ##'   downloaded as ORBIT91 from ncdc.noaa.gov
 #orbit91<-read.table(paste(path,"ins_data.txt",sep=""))
 #use_data(orbit91)
-#use_data(ecustools::orbital_global)
-#ecustools::orbital_global<-orbital_parameters((0:50000)/10)
+#usethis::use_data(orbital_global, internal = TRUE)
+#orbital_global<-orbital_parameters((0:50000)/10)
 
 
 

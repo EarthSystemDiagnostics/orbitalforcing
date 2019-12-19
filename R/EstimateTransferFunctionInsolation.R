@@ -16,7 +16,8 @@
 #' timelag in days
 #' @author Thomas Laepple
 #' @examples
-#' clim <- SelSpace3D(sat.ncep.clim, lat1 = 40, lon1 = 200)
+#' library(orbitalforcing)
+#' clim <- orbitalforcing:::SelSpace3D(sat.ncep.clim, lat1 = 40, lon1 = 200)
 #'
 #' result <- EstimateTransferfunctionInsolation(clim, 70, bPlot=TRUE, b3plot=TRUE)
 #' @export
