@@ -4,7 +4,8 @@
 \name{glob.grid}
 \alias{glob.grid}
 \title{Global grid of seasonal cycle amplitudes.}
-\format{A data frame with 10512 rows and 10 variables:
+\format{
+A data frame with 10512 rows and 10 variables:
 \describe{
   \item{\code{lat}}{double COLUMN_DESCRIPTION}
   \item{\code{lon}}{double COLUMN_DESCRIPTION}
@@ -16,7 +17,8 @@
   \item{\code{amp.diff}}{double COLUMN_DESCRIPTION}
   \item{\code{sig.sq_c}}{double COLUMN_DESCRIPTION}
   \item{\code{sig.sq_a}}{double COLUMN_DESCRIPTION}
-}}
+}
+}
 \usage{
 glob.grid
 }

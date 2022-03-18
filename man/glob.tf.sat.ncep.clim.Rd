@@ -4,7 +4,9 @@
 \name{glob.tf.sat.ncep.clim}
 \alias{glob.tf.sat.ncep.clim}
 \title{Global grid of insolation to surface temperature transfer functions.}
-\format{A list}
+\format{
+A list
+}
 \usage{
 glob.tf.sat.ncep.clim
 }

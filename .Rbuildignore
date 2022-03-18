@@ -2,3 +2,4 @@
 ^LICENSE\.md$
 ^orbitalforcing\.Rproj$
 ^\.Rproj\.user$
+^data-raw$

@@ -405,7 +405,7 @@ GetAmpSeasCycle <- function(lon, lat, kyear, transfer = NULL, plot = FALSE){
   }
 
 
-  climate.at.kyear <- PaleoSpec::MonthlyFromDaily(
+  climate.at.kyear <- MonthlyFromDaily(
     SimulateYearFromInsolation(kyear = kyear, transfer = transfer,
                                           latitude = lat, bPolynomial = TRUE)
   )
