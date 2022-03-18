@@ -5,8 +5,8 @@ library(tidyverse)
 clim <- sat.ncep.clim
 
 GetTF <- function(df){
-  climate.modern <- ecustools::SelSpace3D(clim,
-                                          lat1 = df$lat, lon1 = df$lon) - 273.15
+  climate.modern <- pfields::SelSpace3D(clim,
+                               lat1 = df$lat, lon1 = df$lon) - 273.15
 
 tf <- orbitalforcing::EstimateTransferfunctionInsolation(
   climate = climate.modern, latitude = df$lat)

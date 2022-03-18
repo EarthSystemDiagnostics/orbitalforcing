@@ -16,7 +16,6 @@ Simulate past climate based on the insolation, as described in Laepple, Thomas, 
 
 ```{r}
 library(PaleoSpec)
-library(ecustools)
 library(orbitalforcing) # functions from orbitalforcing are re-exported by ecustools
 ```
 
@@ -36,7 +35,7 @@ Simulate the seasonality from orbital forcing
 
 ```{r, fig.width=6, fig.height=5}
 #First extract the modern daily temperature from NCEP reanalysis
-climate.modern <- orbitalforcing:::SelSpace3D(sat.ncep.clim, lat1 = lat1, lon1 = lon1) - 273.15  
+climate.modern <- pfields::SelSpace3D(sat.ncep.clim, lat1 = lat1, lon1 = lon1) - 273.15  
 
 #estimate the modern relationship between insolation and T
 transfer <- EstimateTransferfunctionInsolation(climate = climate.modern,
