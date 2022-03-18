@@ -61,7 +61,9 @@ usethis::use_data(glob.tf.sat.ncep.clim, overwrite = T)
 usethis::use_data(glob.grid, overwrite = T)
 usethis::use_data(sat.ncep.clim, overwrite = T)
 
-#usethis::use_data(glob.grid, orbit91, orbital_global, internal = TRUE, overwrite = TRUE)
+usethis::use_data(#glob.grid, orbit91,
+  orbital_global,
+  internal = TRUE, overwrite = TRUE)
 
 
 # load("data/orbital_global.rda")
